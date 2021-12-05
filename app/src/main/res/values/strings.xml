@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">FilmsChecker</string>
+    <string name="tmdb_base_url">https://filmchecker.herokuapp.com/</string>
+    <string name="addFav">AJOUTER AUX FAVORIS</string>
+    <string name="favori">FAVORI</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="inscription">Inscription</string>
+    <string name="s_inscrire">S\'inscrire</string>
+    <string name="connexion">Connexion</string>
+    <string name="se_connecter">Se connecter</string>
+    <string name="_1">1</string>
+    <string name="rechercher_un_film">Rechercher un film</string>
+    <string name="consulter_les_favoris">Consulter les favoris</string>
+    <string name="_2">2</string>
+</resources>
