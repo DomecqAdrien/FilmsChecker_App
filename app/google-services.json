@@ -8,18 +8,18 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:288195316574:android:d685d845a581f53fe15dcf",
+        "mobilesdk_app_id": "1:288195316574:android:64046cd8e8c0a738e15dcf",
         "android_client_info": {
           "package_name": "com.example.filmschecker"
         }
       },
       "oauth_client": [
         {
-          "client_id": "288195316574-8c3ri2qc59frrrh2ilfqak1nih3bu6ed.apps.googleusercontent.com",
+          "client_id": "288195316574-nu6lbfitp1otn6mtojevc46qi9pin553.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.filmsChecker",
-            "certificate_hash": "084af90bdfc40645407076026b447f197bfdf3ec"
+            "package_name": "com.example.filmschecker",
+            "certificate_hash": "9bac501fa95844c6490d87089bd6974343045b6a"
           }
         },
         {

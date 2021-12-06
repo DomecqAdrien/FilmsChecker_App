@@ -6,4 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".CommentairesActivity">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/films_recycler_view"
+        android:layout_width="414dp"
+        android:layout_height="369dp"
+        android:scrollbarStyle="insideOverlay"
+        android:scrollbars="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:itemCount="4"
+        tools:listitem="@layout/layout_commentaires" />
+
+    <Button
+        android:id="@+id/tn_add_comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Ajouter votre commentaire"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_commentaire" />
+
+    <TextView
+        android:id="@+id/tv_commentaire"
+        android:layout_width="356dp"
+        android:layout_height="128dp"
+        android:layout_marginTop="20dp"
+        android:hint="Votre commentaire..."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/films_recycler_view" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

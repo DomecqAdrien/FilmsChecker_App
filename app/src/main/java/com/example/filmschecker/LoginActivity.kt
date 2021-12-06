@@ -40,7 +40,7 @@ class LoginActivity : AppCompatActivity() {
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
         GoogleSignIn.getLastSignedInAccount(this)
-        mGoogleSignInClient.signOut()
+        //mGoogleSignInClient.signOut()
 
         //updateUI(account)
 
@@ -62,8 +62,10 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        Log.i("rq", requestCode.toString())
         if (requestCode == RC_SIGN_IN) {
             val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
+            Log.i("task", task.isSuccessful.toString())
             handleSignInResult(task)
         }
     }
