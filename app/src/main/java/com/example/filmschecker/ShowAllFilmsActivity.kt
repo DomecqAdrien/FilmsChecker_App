@@ -6,15 +6,21 @@ import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.filmschecker.adapter.FilmAdapter
-import com.example.filmschecker.domain.APIParserDTO
 import com.example.filmschecker.domain.Category
 import com.example.filmschecker.domain.Film
 import com.example.filmschecker.service.FilmService
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 
 class ShowAllFilmsActivity : AppCompatActivity() {
@@ -36,9 +42,22 @@ class ShowAllFilmsActivity : AppCompatActivity() {
         filmsAdapter = FilmAdapter(this)
         filmsRecyclerView = findViewById(R.id.films_recycler_view)
 
+        val loggingInterceptor = HttpLoggingInterceptor()
+        loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+
+        val ytHttpClient = OkHttpClient.Builder()
+            .addInterceptor(loggingInterceptor)
+            .writeTimeout(120, TimeUnit.SECONDS)
+            .readTimeout(60, TimeUnit.SECONDS)
+            .connectTimeout(60, TimeUnit.SECONDS)
+            .build()
+
         retrofit = Retrofit.Builder()
             .baseUrl(getString(R.string.tmdb_base_url))
-            .addConverterFactory(GsonConverterFactory.create()).build()
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(ytHttpClient)
+            .build()
         filmService = retrofit.create(FilmService::class.java)
 
         filmsRecyclerView.apply {
@@ -107,15 +126,14 @@ class ShowAllFilmsActivity : AppCompatActivity() {
         })
     }
 
-    private fun enqueue(filmsSearchCall: Call<List<Film>>){
-        filmsSearchCall.enqueue(object : Callback<List<Film>>{
-            override fun onResponse(call: Call<List<Film>>, response: Response<List<Film>>) {
-                initFilm(response.body()?: emptyList())
+    private fun enqueue(filmsSearchCall: Observable<List<Film>>){
+        Log.i("test","test")
+        filmsSearchCall
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                initFilm(it ?: emptyList())
             }
-            override fun onFailure(call: Call<List<Film>>, t: Throwable) {
-                Log.i("error",t.message.toString())
-            }
-        })
     }
 
     private fun getFilmsBySearch(newText: String){
