@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".FilmDetailActivity">
 
     <TextView
         android:id="@+id/textView8"
@@ -119,6 +119,19 @@
         android:background="@color/holoDarkBlue"
         android:onClick="onClickFavori"
         android:text="@string/addFav"
+        android:textColor="@color/cardview_light_background"
+        app:layout_constraintStart_toEndOf="@+id/film_affiche"
+        app:layout_constraintTop_toBottomOf="@+id/film_description" />
+
+    <Button
+        android:id="@+id/film_get_ticket"
+        android:layout_width="186dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="48dp"
+        android:background="@color/holoDarkBlue"
+        android:onClick="onClickPlace"
+        android:text="Réserver une place"
         android:textColor="@color/cardview_light_background"
         app:layout_constraintStart_toEndOf="@+id/film_affiche"
         app:layout_constraintTop_toBottomOf="@+id/film_description" />

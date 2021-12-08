@@ -10,23 +10,18 @@ import com.bumptech.glide.Glide
 import com.example.filmschecker.adapter.ActorsAdapter
 import com.example.filmschecker.databinding.ActivityFilmsBinding
 import com.example.filmschecker.domain.*
-import com.example.filmschecker.service.FilmService
+import com.example.filmschecker.service.ApiManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import java.util.stream.Collectors
 
 
 class FilmDetailActivity : AppCompatActivity() {
 
     private lateinit var database: DatabaseReference
     private lateinit var binding: ActivityFilmsBinding
-    private lateinit var retrofit: Retrofit
-    private lateinit var filmService: FilmService
     private lateinit var film: Film
     private var filmId: Int = 0
     private lateinit var actorsRecyclerView: RecyclerView
@@ -37,20 +32,18 @@ class FilmDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
         binding = ActivityFilmsBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
+
+        setContentView(R.layout.activity_loading)
+        //val view = binding.root
+        //setContentView(view)
         actorsRecyclerView = binding.actorsRecyclerView
         initRecyclerView()
         filmId = this.intent.extras!!.getInt("film_id")
+        val isReservable = this.intent.extras?.getBoolean("isReservable")
         userEmail = FirebaseAuth.getInstance().currentUser?.email.toString()
-
-
-        retrofit = Retrofit.Builder()
-            .baseUrl(getString(R.string.tmdb_base_url))
-            .addConverterFactory(GsonConverterFactory.create()).build()
-        filmService = retrofit.create(FilmService::class.java)
-
 
         getFilm()
     }
@@ -63,12 +56,14 @@ class FilmDetailActivity : AppCompatActivity() {
     }
 
     private fun getFilm() {
-        val filmsCall : Call<Film> = filmService.getOneFilm(filmId)
+        val filmsCall : Call<Film> = ApiManager.getInstance().filmService.getOneFilm(filmId)
         filmsCall.enqueue(object: Callback<Film> {
             override fun onResponse(call: Call<Film>, response: Response<Film>) {
                 film = response.body()!!
                 initFilm()
                 getActors()
+                val view = binding.root
+                setContentView(view)
             }
             override fun onFailure(call: Call<Film>, t: Throwable) {
                 Log.i("error",t.message.toString())
@@ -78,7 +73,7 @@ class FilmDetailActivity : AppCompatActivity() {
 
     private fun getActors() {
 
-        val creditsCall : Call<APIParserDTO> = filmService.getActorsByFilm(filmId)
+        val creditsCall : Call<APIParserDTO> = ApiManager.getInstance().filmService.getActorsByFilm(filmId)
 
         creditsCall.enqueue(object : Callback<APIParserDTO>{
             override fun onResponse(call: Call<APIParserDTO>, response: Response<APIParserDTO>) {
@@ -163,6 +158,10 @@ class FilmDetailActivity : AppCompatActivity() {
     }
     fun onClickFavori(v: View?=null){
         manageFavori(false)
+    }
+
+    fun onClickPlace(v: View?=null) {
+        startActivity(Intent(this, ReservationActivity::class.java))
     }
 
     private fun addFavori() {

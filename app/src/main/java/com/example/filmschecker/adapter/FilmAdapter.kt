@@ -30,6 +30,7 @@ class FilmAdapter(private val context: Context) : RecyclerView.Adapter<FilmsView
         holder.itemView.setOnClickListener {
             val intent = Intent(context, FilmDetailActivity::class.java)
             intent.putExtra("film_id",film.id)
+            intent.putExtra("isReservable", position < 19)
             context.startActivity(intent)
         }
         holder.bindData(film)

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.filmschecker.adapter.FilmAdapter
 import com.example.filmschecker.domain.Favori
 import com.example.filmschecker.domain.Film
+import com.example.filmschecker.service.ApiManager
 import com.example.filmschecker.service.FilmService
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -25,8 +26,6 @@ import java.util.stream.Collectors
 class LikedFilmsActivity : AppCompatActivity() {
 
     private var films: MutableList<Film> = mutableListOf()
-    private lateinit var retrofit: Retrofit
-    private lateinit var filmService: FilmService
     private lateinit var filmsRecyclerView: RecyclerView
     private lateinit var filmsAdapter : FilmAdapter
     private lateinit var favorisTv: TextView
@@ -38,11 +37,6 @@ class LikedFilmsActivity : AppCompatActivity() {
         filmsAdapter = FilmAdapter(this)
         filmsRecyclerView = findViewById(R.id.films_recycler_view)
         favorisTv = findViewById(R.id.favoris_tv)
-
-        retrofit = Retrofit.Builder()
-            .baseUrl(getString(R.string.tmdb_base_url))
-            .addConverterFactory(GsonConverterFactory.create()).build()
-        filmService = retrofit.create(FilmService::class.java)
 
         filmsRecyclerView.apply {
             adapter = filmsAdapter
@@ -67,14 +61,14 @@ class LikedFilmsActivity : AppCompatActivity() {
                     favorisTv.visibility = View.VISIBLE
                 }
                 for(favori in favoris){
-                    getFilm(favori.filmId!!)
+                    getFilm(favori.filmId)
                 }
             }
         })
     }
 
     private fun getFilm(filmId: Int) {
-        val filmsCall : Call<Film> = filmService.getOneFilm(filmId)
+        val filmsCall : Call<Film> = ApiManager.getInstance().filmService.getOneFilm(filmId)
         filmsCall.enqueue(object: Callback<Film> {
             override fun onResponse(call: Call<Film>, response: Response<Film>) {
                 films.add(response.body()!!)
