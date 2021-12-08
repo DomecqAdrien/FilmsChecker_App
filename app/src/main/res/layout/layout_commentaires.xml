@@ -10,7 +10,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/commentaire_nom"
+            android:id="@+id/reservation_jour"
             android:layout_width="235dp"
             android:layout_height="36dp"
             android:layout_marginStart="32dp"
@@ -31,7 +31,7 @@
             android:maxLines="4"
             android:text="TextView"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/commentaire_nom" />
+            app:layout_constraintTop_toBottomOf="@+id/reservation_jour" />
 
         <View
             android:id="@+id/divider"

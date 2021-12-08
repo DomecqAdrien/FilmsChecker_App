@@ -41,7 +41,7 @@ class FilmsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val context: Context = itemView.context
     private var afficheIv: ImageView = itemView.findViewById(R.id.film_affiche)
     private var synopsisTv: TextView = itemView.findViewById(R.id.commentaire_texte)
-    private var titreTv: TextView = itemView.findViewById(R.id.commentaire_nom)
+    private var titreTv: TextView = itemView.findViewById(R.id.reservation_jour)
     private var genresTv: TextView = itemView.findViewById(R.id.film_genres)
 
     fun bindData(film: Film) {

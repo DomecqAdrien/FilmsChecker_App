@@ -28,7 +28,7 @@ class CommentaireAdapter : RecyclerView.Adapter<CommentaireViewHolder>() {
 }
 
 class CommentaireViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    private var tvCommentaireNom: TextView = itemView.findViewById(R.id.commentaire_nom)
+    private var tvCommentaireNom: TextView = itemView.findViewById(R.id.reservation_jour)
     private var tvCommentaireTexte: TextView = itemView.findViewById(R.id.commentaire_texte)
 
     fun bindData(comment: Comment) {

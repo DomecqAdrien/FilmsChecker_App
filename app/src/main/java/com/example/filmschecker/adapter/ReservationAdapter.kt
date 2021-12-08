@@ -1,4 +1,4 @@
 package com.example.filmschecker.adapter
 
-class ReservationDayAdapter {
+class ReservationAdapter {
 }
