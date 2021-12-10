@@ -94,7 +94,8 @@ class FilmDetailActivity : AppCompatActivity() {
 
             btnCommentaires.setOnClickListener {
                 val intent = Intent(this@FilmDetailActivity, CommentairesActivity::class.java)
-                startActivity(Intent())
+                intent.putExtra("film_id",film.id)
+                startActivity(intent)
             }
 
             manageFavori(true)
@@ -161,7 +162,9 @@ class FilmDetailActivity : AppCompatActivity() {
     }
 
     fun onClickPlace(v: View?=null) {
-        startActivity(Intent(this, ReservationActivity::class.java))
+        val intent = Intent(this, ReservationActivity::class.java)
+        intent.putExtra("film_id", filmId)
+        startActivity(intent)
     }
 
     private fun addFavori() {

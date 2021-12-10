@@ -7,7 +7,7 @@
     tools:context=".ReservationActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/films_recycler_view"
+        android:id="@+id/reservation_creneaux"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbarStyle="insideOverlay"

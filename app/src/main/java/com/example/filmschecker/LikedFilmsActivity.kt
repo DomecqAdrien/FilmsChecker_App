@@ -10,7 +10,6 @@ import com.example.filmschecker.adapter.FilmAdapter
 import com.example.filmschecker.domain.Favori
 import com.example.filmschecker.domain.Film
 import com.example.filmschecker.service.ApiManager
-import com.example.filmschecker.service.FilmService
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -19,8 +18,6 @@ import com.google.firebase.database.ValueEventListener
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.util.stream.Collectors
 
 class LikedFilmsActivity : AppCompatActivity() {
@@ -35,7 +32,7 @@ class LikedFilmsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_liked_films)
         filmsAdapter = FilmAdapter(this)
-        filmsRecyclerView = findViewById(R.id.films_recycler_view)
+        filmsRecyclerView = findViewById(R.id.reservation_creneaux)
         favorisTv = findViewById(R.id.favoris_tv)
 
         filmsRecyclerView.apply {

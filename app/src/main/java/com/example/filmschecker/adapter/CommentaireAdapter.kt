@@ -9,7 +9,7 @@ import com.example.filmschecker.R
 
 class CommentaireAdapter : RecyclerView.Adapter<CommentaireViewHolder>() {
 
-    var comment: List<Comment> = emptyList()
+    var comments: List<Comment> = emptyList()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -19,10 +19,10 @@ class CommentaireAdapter : RecyclerView.Adapter<CommentaireViewHolder>() {
         return CommentaireViewHolder(parent.inflate(R.layout.layout_commentaires))
     }
 
-    override fun getItemCount() = comment.size
+    override fun getItemCount() = comments.size
 
     override fun onBindViewHolder(holder: CommentaireViewHolder, position: Int) {
-        val weapon = comment[position]
+        val weapon = comments[position]
         holder.bindData(weapon)
     }
 }

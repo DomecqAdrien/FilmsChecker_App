@@ -9,7 +9,7 @@
     tools:context=".ShowAllFilmsActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/films_recycler_view"
+        android:id="@+id/reservation_creneaux"
         android:layout_width="411dp"
         android:layout_height="554dp"
         android:scrollbarStyle="insideOverlay"

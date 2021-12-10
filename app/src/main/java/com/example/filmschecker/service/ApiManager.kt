@@ -1,5 +1,6 @@
 package com.example.filmschecker.service
 
+import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -25,10 +26,12 @@ object ApiManager {
             .connectTimeout(60, TimeUnit.SECONDS)
             .build()
 
+        val gson = GsonBuilder().setLenient().create()
+
         val retrofit = Retrofit.Builder()
             .baseUrl("https://filmchecker.herokuapp.com/")
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .client(httpClient)
             .build()
 

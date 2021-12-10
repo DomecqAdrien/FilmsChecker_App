@@ -30,9 +30,19 @@ class ShowAllFilmsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_loading)
+
+
+        getCategories()
+
+    }
+
+    private fun setView() {
+
         setContentView(R.layout.activity_show_films)
+
         filmsAdapter = FilmAdapter(this)
-        filmsRecyclerView = findViewById(R.id.films_recycler_view)
+        filmsRecyclerView = findViewById(R.id.reservation_creneaux)
 
         filmsRecyclerView.apply {
             adapter = filmsAdapter
@@ -78,7 +88,6 @@ class ShowAllFilmsActivity : AppCompatActivity() {
                 }
             }
         })
-        getCategories()
     }
 
     private fun getCategories(){
@@ -119,6 +128,7 @@ class ShowAllFilmsActivity : AppCompatActivity() {
     }
 
     private fun initFilm(newFilms: List<Film>) {
+        setView()
         for(f: Film in newFilms){
             f.genres = ArrayList()
             for(i in f.genresId.indices){
