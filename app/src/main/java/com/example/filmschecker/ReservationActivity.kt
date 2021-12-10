@@ -4,9 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
-import com.example.filmschecker.domain.reservation.Reservation
+import com.esgi.filmchecker.model.Reservation
 import com.example.filmschecker.adapter.ReservationAdapter
-import com.example.filmschecker.domain.reservation.Creneau
+import com.esgi.filmchecker.model.Creneau
 import com.example.filmschecker.service.ApiManager
 import com.google.firebase.auth.FirebaseAuth
 import io.reactivex.Observable

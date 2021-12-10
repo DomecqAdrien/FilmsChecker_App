@@ -1,9 +1,9 @@
 package com.example.filmschecker.service
 
 import com.esgi.filmchecker.model.Comment
-import com.example.filmschecker.domain.reservation.Reservation
+import com.esgi.filmchecker.model.Creneau
+import com.esgi.filmchecker.model.Reservation
 import com.example.filmschecker.domain.*
-import com.example.filmschecker.domain.reservation.Creneau
 import io.reactivex.Observable
 import retrofit2.Call
 import retrofit2.http.*

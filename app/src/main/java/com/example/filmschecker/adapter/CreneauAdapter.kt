@@ -4,9 +4,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.esgi.filmchecker.model.Creneau
 import com.example.filmschecker.R
-import com.example.filmschecker.domain.reservation.Creneau
-import com.example.filmschecker.service.ApiManager
 
 class ReservationAdapter : RecyclerView.Adapter<CreneauViewHolder>() {
     var onItemClick: ((Creneau) -> Unit)? = null
